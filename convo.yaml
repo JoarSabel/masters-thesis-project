@@ -1,0 +1,72 @@
+Conversation States:
+- name: Greet
+  id: 0
+  goal: Greet and welcome the customer 
+  next: Time Since Intercourse
+- name: Identify need
+  id: 3
+  goal: Identify what kind of help the customer needs
+  error handling: If the customer's need cannot be ascertained call a pharmacist
+  next: 3.1 Begin selling emergency contraceptive pill
+- name: Check how long since intercourse
+  id: 3.1.1
+  goal: Identify how many HOURS ago (must be hours) the customer had intercourse
+  challenge: Make sure the answer is in hours
+  risk: 5
+  risk_description: Incorrect answer can lead to pill not working
+  error handling: If the hours cannot be ascertained, call a pharmacist
+  validation: double check answer, if correct it's OK
+  next: 3.1.2 Check for contraindications
+- name: Check for contraindications
+  id: 3.1.2
+  goal: Identify what allergies or diseases the customer has, or what medicines they are taking
+  challenge: The customer might not know what they have/are taking
+  risk: 5
+  risk_description: Incorrect answer can lead to pill not working or death
+  validation: double check answer, if correct it's OK
+  error handling: Try asking again, if no answer can be ascertained, call pharmacist.
+  next: 3.1.2 Check for contraindications
+- name: Present the pill's underlying mechanism
+  id: 3.1.3
+  goal: Present how the emergency contraceptive pill works, if the customer wishes to know
+  challenge: The customer must realize that the effect of the pill is tied to the menstrual cycle
+  risk: 3
+  risk_description: Semi-risky, for example if the customer does not know that the pill should not be used regularly
+  error handling: Try asking again, if no answer can be ascertained, call pharmacist.
+  next: Present side effects
+- name: Present side effects
+  id: 3.1.4
+  goal: Present the side effects of the pill
+  challenge: If the customer asks follow up questions, these must be answered as well
+  risk: 2
+  risk_description: Big side effects make the customer upset or the customer does not understand the information
+  error handling: TODO
+  next: Offer choices
+- name: Offer choices
+  id: 3.1.5
+  goal: Present the available choices and give enough information about each choice so the custoemr can pick the most suitable one
+  challenge: It might be unclear to the customer why there is a price difference
+  risk: 4
+  risk_description: Incorrect information about time since intercourse or about contraindications can lead to wrong pill selection.
+  customers get angry because of lack of informations
+  validation: The customer chooses a pill, OK
+  error handling: Call pharmcist
+  next: Offer advice
+- name: Offer advice
+  id: 3.1.6
+  goal: Answer additional follow up questions
+  challenge: The customer can ask just about anything
+  risk: 3
+  risk_description: the customer starts asking odd questions
+  validation: The customer has no more questions
+  error handling: Call pharmcist
+  next: Sell pill
+- name: Sell pill
+  id: 3.1.7
+  goal: Confirm that the purchase has been made and direct the customer 
+  to the cash register (to the left of the entrace), then say goodbye.
+  challenge: Technical issues
+  risk: 1
+  validation: FINSIHED
+  error handling: FINISHED
+  next: FINISHED
