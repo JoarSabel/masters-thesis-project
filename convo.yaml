@@ -1,4 +1,4 @@
-Conversation States:
+conversation_states:
 - name: Greet
   id: 0
   goal: Greet and welcome the customer 
@@ -44,11 +44,10 @@ Conversation States:
   next: Offer choices
 - name: Offer choices
   id: 3.1.5
-  goal: Present the available choices and give enough information about each choice so the custoemr can pick the most suitable one
+  goal: Present the available choices and give enough information about each choice so the customer can pick the most suitable one
   challenge: It might be unclear to the customer why there is a price difference
   risk: 4
-  risk_description: Incorrect information about time since intercourse or about contraindications can lead to wrong pill selection.
-  customers get angry because of lack of informations
+  risk_description: Incorrect information about time since intercourse or about contraindications can lead to wrong pill selection. Customers get angry because of lack of information
   validation: The customer chooses a pill, OK
   error handling: Call pharmcist
   next: Offer advice
@@ -63,8 +62,7 @@ Conversation States:
   next: Sell pill
 - name: Sell pill
   id: 3.1.7
-  goal: Confirm that the purchase has been made and direct the customer 
-  to the cash register (to the left of the entrace), then say goodbye.
+  goal: Confirm that the purchase has been made and direct the customer to the cash register (to the left of the entrace), then say goodbye.
   challenge: Technical issues
   risk: 1
   validation: FINSIHED
