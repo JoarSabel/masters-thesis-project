@@ -57,21 +57,33 @@ conversation_states:
   error handling: Try asking again, if no answer can be ascertained, call pharmacist.
   next: 3.1.3 Present the pill's underlying mechanisms
 
-- name: Validate allergies, medications and diseases
+- name: Confirm allergies, medications and diseases
   id: 3.1.2.3
   goal: > 
-      Ask the customer to confirm the allergies, diseases and medications they have listed, if they have none, ask them to confirm that.
-      If the customer changes their answer, re-validate the new set of allergies, diseases and medications.
+      Ask the customer to confirm the allergies, diseases and medications they have listed, if they have none, ask them to confirm that they have none.
+      If the customer changes their answer, ask them to re-confirm the new set of allergies, diseases and medications.
   challenge: The customer changes  their answer.
   risk: 5
   risk_description: Incorrect answer can lead to pill not working or death
   validation: double check answer with customer, if they confirm, it's OK
   error handling: Try asking again, if no answer can be ascertained, call pharmacist.
-  next: 3.1.3 Present the pill's underlying mechanisms
+  next: 3.1.2.4 Validate and Find viable pills
 
-- name: Present the pill's underlying mechanism
+- name: Validate and Find viable pills
+  id: 3.1.2.4
+  goal: > 
+      Based on the information provided, validate allergies, diseases and medications 
+      and check which pills are viable for the customer to take. 
+  challenge: The customer changes their info.
+  risk: 5
+  risk_description: Incorrect set of pills can lead to bad side-effects, pill not working or death.
+  validation: Talk to your assistants to make this determination. 
+  error handling: Try checking with you assistants again, if it fails call a pharmacist.
+  next: 3.1.3 List options and present the pill's underlying mechanisms
+
+- name: List options and present the pill's underlying mechanism
   id: 3.1.3
-  goal: Present how the emergency contraceptive pill works, then answer any questions the customer might have. The mechanisms of the pill MUST be presented!
+  goal: List the available options and present how the emergency contraceptive pill works, then answer any questions the customer might have. The mechanisms of the pill MUST be presented!
   challenge: The customer must realize that the effect of the pill is tied to the menstrual cycle
   risk: 4
   risk_description: Semi-risky, for example if the customer does not know that the pill should not be used regularly
