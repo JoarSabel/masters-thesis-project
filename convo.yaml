@@ -79,16 +79,18 @@ conversation_states:
   risk_description: Incorrect set of pills can lead to bad side-effects, pill not working or death.
   validation: Talk to your assistants to make this determination. 
   error handling: Try checking with you assistants again, if it fails call a pharmacist.
-  next: 3.1.3 List options and present the pill's underlying mechanisms
+  next: 3.1.3 Present the pill's underlying mechanisms
 
-- name: List options and present the pill's underlying mechanism
+- name: Present the pill's underlying mechanism
   id: 3.1.3
-  goal: List the available options and present how the emergency contraceptive pill works, then answer any questions the customer might have. The mechanisms of the pill MUST be presented!
+  goal: >
+    Present how the emergency contraceptive pill works, 
+    then answer any questions the customer might have. The mechanisms of the pill MUST be presented!
   challenge: The customer must realize that the effect of the pill is tied to the menstrual cycle
   risk: 4
   risk_description: Semi-risky, for example if the customer does not know that the pill should not be used regularly
   error handling: Try explaining again, if the customer still has trouble understanding after multiple attempts, call pharmacist.
-  next: Present side effects
+  next: 3.1.4 Present side effects
 
 - name: Present side effects
   id: 3.1.4
@@ -97,7 +99,7 @@ conversation_states:
   risk: 4
   risk_description: Big side effects make the customer upset or the customer does not understand the information
   error handling: Try explaining again, if the customer still has trouble understanding after multiple attempts, call pharmacist.
-  next: Offer choices
+  next: 3.1.5 Offer choices
 
 - name: Offer choices
   id: 3.1.5
@@ -107,7 +109,7 @@ conversation_states:
   risk_description: Incorrect information about time since intercourse or about contraindications can lead to wrong pill selection. Customers get angry because of lack of information
   validation: The customer chooses a pill, OK
   error handling: Call pharmcist
-  next: Offer advice
+  next: 3.1.6 Offer advice
 
 - name: Offer advice
   id: 3.1.6
@@ -117,7 +119,7 @@ conversation_states:
   risk_description: the customer starts asking odd questions
   validation: The customer has no more questions
   error handling: Call pharmcist
-  next: Sell pill
+  next: 3.1.7 Sell pill
 
 - name: Sell pill
   id: 3.1.7
