@@ -13,7 +13,7 @@ conversation_states:
 - name: Check how long since intercourse
   id: 3.1.1
   goal: Identify how many HOURS ago (must be hours) the customer had intercourse
-  challenge: Make sure the answer is in hours
+  challenge: Make sure the answer is in hours. If the customer had intercourse more than 72 hours ago, call a pharmacist and end the conversation.
   risk: 5
   risk_description: Incorrect answer can lead to pill not working
   error handling: If the hours cannot be ascertained, call a pharmacist
@@ -73,11 +73,12 @@ conversation_states:
   id: 3.1.2.4
   goal: > 
       Based on the information provided, validate allergies, diseases and medications 
-      and check which pills are viable for the customer to take. Do not present the pills yet.
+      and check which pills are viable for the customer to take. 
+      Do not present the pills yet. Presenting the pills happens in step 3.1.5 Offer choices.
   challenge: The customer changes their info.
   risk: 5
   risk_description: Incorrect set of pills can lead to bad side-effects, pill not working or death.
-  validation: Talk to your assistants to make this determination. 
+  validation: Talk to your assistants to find out the viable pills. 
   error handling: Try checking with you assistants again, if it fails call a pharmacist.
   next: 3.1.3 Present the pill's underlying mechanisms
 
@@ -105,7 +106,7 @@ conversation_states:
   id: 3.1.5
   goal: Present the available choices and give enough information about each choice so the customer can pick the most suitable one
   challenge: It might be unclear to the customer why there is a price difference
-  risk: 4
+  risk: 3
   risk_description: Incorrect information about time since intercourse or about contraindications can lead to wrong pill selection. Customers get angry because of lack of information
   validation: The customer chooses a pill, OK
   error handling: Call pharmcist
