@@ -76,11 +76,11 @@ conversation_states:
       and check which pills are viable for the customer to take. 
       Do not present the pills yet. Presenting the pills happens in step 3.1.5 Offer choices.
   challenge: The customer changes their info.
-  risk: 5
+  risk: 6
   risk_description: Incorrect set of pills can lead to bad side-effects, pill not working or death.
-  validation: Talk to your assistants to find out the viable pills. 
+  validation: Talk to your assistants to find out the viable pills, the step is complete when you know what pills the customer can take. 
   error handling: Try checking with you assistants again, if it fails call a pharmacist.
-  next: 3.1.3 Present the pill's underlying mechanisms
+  next: 3.1.3 Present the underlying mechanisms
 
 - name: Present the underlying mechanism
   id: 3.1.3
@@ -88,8 +88,8 @@ conversation_states:
     Before telling the customer about the options, present how the emergency contraceptive pill works, 
     then answer any questions the customer might have. The mechanisms of the pill MUST be presented!
   challenge: The customer must realize that the effect of the pill is tied to the menstrual cycle
-  risk: 4
-  risk_description: Semi-risky, for example if the customer does not know that the pill should not be used regularly
+  risk: 5
+  risk_description: Semi-risky, for example if the customer does not know that the pill should not be used regularly.
   error handling: Try explaining again, if the customer still has trouble understanding after multiple attempts, call pharmacist.
   next: 3.1.4 Present side effects
 
@@ -97,15 +97,19 @@ conversation_states:
   id: 3.1.4
   goal: Present the side effects of the pill, then answer any questions the customer might have. The side-effects MUST be presented!
   challenge: If the customer asks follow up questions, these must be answered as well
-  risk: 4
+  risk: 5
   risk_description: Big side effects make the customer upset or the customer does not understand the information
   error handling: Try explaining again, if the customer still has trouble understanding after multiple attempts, call pharmacist.
   next: 3.1.5 Offer choices
 
 - name: Offer choices
   id: 3.1.5
-  goal: Present the available choices and give enough information about each choice so the customer can pick the most suitable one
-  challenge: It might be unclear to the customer why there is a price difference
+  goal: > 
+    Present the available choices and give enough information about each choice so the customer can pick the most suitable one. 
+    The step is complete once the customer has picked a pill.
+  challenge: > 
+    It might be unclear to the customer why there is a price difference. 
+    The choices CANNOT be presented before the customer knows the mechanisms and side effects!
   risk: 3
   risk_description: Incorrect information about time since intercourse or about contraindications can lead to wrong pill selection. Customers get angry because of lack of information
   validation: The customer chooses a pill, OK
@@ -115,7 +119,7 @@ conversation_states:
 - name: Offer advice
   id: 3.1.6
   goal: Answer additional follow up questions
-  challenge: The customer can ask just about anything
+  challenge: The customer can ask about anything related to the pills
   risk: 3
   risk_description: the customer starts asking odd questions
   validation: The customer has no more questions
