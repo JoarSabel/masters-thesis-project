@@ -86,7 +86,9 @@ conversation_states:
   id: 3.1.3
   goal: >
     Before telling the customer about the options, present how the emergency contraceptive pill works, 
-    then answer any questions the customer might have. The mechanisms of the pill MUST be presented!
+    then answer any questions the customer might have. 
+    If the customer has no questions, move to the next step.
+    The mechanisms of the pill MUST be presented!
   challenge: The customer must realize that the effect of the pill is tied to the menstrual cycle
   risk: 5
   risk_description: Semi-risky, for example if the customer does not know that the pill should not be used regularly.
